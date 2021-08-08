@@ -1,4 +1,6 @@
-int time_slot = 1;//depict time of the day
+int time_slot = 3;//depict time of the day
+int greenOn = 3000;
+int yellowOn = 1000;
 //2D array for 4 signals, each having 3 LED lights
 int signal[4][3] = {7, 6, 5,//signal 1 red, yellow, green LED respectively
                     4, 3, 2,//signal 2 red, yellow, green LED respectively
@@ -39,10 +41,10 @@ void loop() {
     {
       digitalWrite(signal[i][0],LOW);//red LED
       digitalWrite(signal[i][2],HIGH);//green LED
-      delay(3000);//3 seconds
+      delay(greenOn);//3 seconds
       digitalWrite(signal[i][2],LOW);//green LED
       digitalWrite(signal[i][1],HIGH);//yellow LED
-      delay(1000);//1 second
+      delay(yellowOn);//1 second
       digitalWrite(signal[i][1],LOW);//yellow LED
       digitalWrite(signal[i][0],HIGH);//red LED
     }
@@ -60,12 +62,12 @@ void loop() {
       digitalWrite(signal[i+2][0],LOW);//red LED of opposite signal
       digitalWrite(signal[i][2],HIGH);//green LED
       digitalWrite(signal[i+2][2],HIGH);//green LED of opposite signal
-      delay(3000);//3 seconds
+      delay(greenOn);//3 seconds
       digitalWrite(signal[i][2],LOW);//green LED
       digitalWrite(signal[i+2][2],LOW);//green LED of opposite signal
       digitalWrite(signal[i][1],HIGH);//yellow LED
       digitalWrite(signal[i+2][1],HIGH);//yellow LED of opposite signal
-      delay(1000);//1 second
+      delay(yellowOn);//1 second
       digitalWrite(signal[i][1],LOW);//yellow LED
       digitalWrite(signal[i+2][1],LOW);//yellow LED of opposite signal
       digitalWrite(signal[i][0],HIGH);//red LED
