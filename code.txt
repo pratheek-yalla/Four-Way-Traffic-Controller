@@ -1,4 +1,4 @@
-int time_slot = 3;  //depict time of the day
+int time_slot;  //depict time of the day
 int greenOn = 3000;
 int yellowOn = 1000;
 //2D array for 4 signals, each having 3 LED lights
@@ -14,6 +14,10 @@ void setup() {
       pinMode(signal[i][j],OUTPUT);//LED's of 4 signals connected to pins 2-13, as mentioned above.
     }
   }
+  Serial.begin(115200);
+  Serial.println("Enter the time slot of the day");
+  while(Serial.available()==0) {};
+  time_slot = Serial.parseInt();  //user defined time slot
 }
 void loop() {
   //for time_slot 1
