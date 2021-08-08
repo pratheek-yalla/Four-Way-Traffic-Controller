@@ -1,0 +1,75 @@
+int time_slot = 3;//depict time of the day
+//2D array for 4 signals, each having 3 LED lights
+int signal[4][3] = {7, 6, 5,//signal 1 red, yellow, green LED respectively
+                    4, 3, 2,//signal 2 red, yellow, green LED respectively
+                    11, 12, 13,//signal 3 red, yellow, green LED respectively
+                    8, 9, 10};//signal 4 red, yellow, green LED respectively
+void setup() {
+  for(int i=0; i<4; i++)
+  {
+    for(int j=0; j<3; j++)
+    {
+      pinMode(signal[i][j],OUTPUT);//LED's of 4 signals connected to pins 2-13, as mentioned above.
+    }
+  }
+}
+void loop() {
+  //for time_slot 1
+  if(time_slot == 1)
+  {
+    digitalWrite(signal[0][1],HIGH);//signal 1 yellow 
+    digitalWrite(signal[1][1],HIGH);//signal 2 yellow
+    digitalWrite(signal[2][1],HIGH);//signal 3 yellow
+    digitalWrite(signal[3][1],HIGH);//signal 4 yellow
+    delay(750);
+    digitalWrite(signal[0][1],LOW);//signal 1 yellow
+    digitalWrite(signal[1][1],LOW);//signal 2 yellow
+    digitalWrite(signal[2][1],LOW);//signal 3 yellow
+    digitalWrite(signal[3][1],LOW);//signal 4 yellow
+    delay(250);
+  }
+  //for time_slots 2 and 4
+  if(time_slot == 2 || time_slot == 4)
+  {
+    for(int i=0; i<4; i++)
+    {
+      digitalWrite(signal[i][0],HIGH);//red LED of all signals glow
+    }
+    for(int i=0;i<4; i++)//loop for 4 signals
+    {
+      digitalWrite(signal[i][0],LOW);//red LED
+      digitalWrite(signal[i][2],HIGH);//green LED
+      delay(3000);//3 seconds
+      digitalWrite(signal[i][2],LOW);//green LED
+      digitalWrite(signal[i][1],HIGH);//yellow LED
+      delay(1000);//1 second
+      digitalWrite(signal[i][1],LOW);//yellow LED
+      digitalWrite(signal[i][0],HIGH);//red LED
+    }
+  }
+  //for time_slot 3
+  if(time_slot == 3)
+  {
+    for(int i=0; i<4; i++)
+    {
+      digitalWrite(signal[i][0],HIGH);//red LED of all signals glow
+    }
+    for(int i=1;i>=0; i--)//i=1 for main road and i=2 for side road
+    {
+      digitalWrite(signal[i][0],LOW);//red LED
+      digitalWrite(signal[i+2][0],LOW);//red LED of opposite signal
+      digitalWrite(signal[i][2],HIGH);//green LED
+      digitalWrite(signal[i+2][2],HIGH);//green LED of opposite signal
+      delay(3000);//3 seconds
+      digitalWrite(signal[i][2],LOW);//green LED
+      digitalWrite(signal[i+2][2],LOW);//green LED of opposite signal
+      digitalWrite(signal[i][1],HIGH);//yellow LED
+      digitalWrite(signal[i+2][1],HIGH);//yellow LED of opposite signal
+      delay(1000);//1 second
+      digitalWrite(signal[i][1],LOW);//yellow LED
+      digitalWrite(signal[i+2][1],LOW);//yellow LED of opposite signal
+      digitalWrite(signal[i][0],HIGH);//red LED
+      digitalWrite(signal[i+2][0],HIGH);//red LED of opposite signal
+    }
+  }
+}
