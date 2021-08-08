@@ -1,0 +1,71 @@
+int time_slot = 1;
+int signal[4][3] = {7, 6, 5,//signal 1 red, yellow, green LED respectively
+                    4, 3, 2,//signal 2 red, yellow, green LED respectively
+                    11, 12, 13,//signal 3 red, yellow, green LED respectively
+                    8, 9, 10};//signal 4 red, yellow, green LED respectively
+void setup() {
+  for(int i=0; i<4; i++)
+  {
+    for(int j=0; j<3; j++)
+    {
+      pinMode(signal[i][j],OUTPUT);
+    }
+  }
+}
+void loop() {
+  if(time_slot == 1)
+  {
+    digitalWrite(signal[0][1],HIGH);
+    digitalWrite(signal[1][1],HIGH);
+    digitalWrite(signal[2][1],HIGH);
+    digitalWrite(signal[3][1],HIGH);
+    delay(750);
+    digitalWrite(signal[0][1],LOW);
+    digitalWrite(signal[1][1],LOW);
+    digitalWrite(signal[2][1],LOW);
+    digitalWrite(signal[3][1],LOW);
+    delay(250);
+  }
+  if(time_slot == 2 || time_slot == 4)
+  {
+    for(int i=0; i<4; i++)
+    {
+      digitalWrite(signal[i][0],HIGH);
+    }
+    for(int i=0;i<4; i++)
+    {
+      digitalWrite(signal[i][0],LOW);
+      digitalWrite(signal[i][2],HIGH);
+      delay(3000);
+      digitalWrite(signal[i][2],LOW);
+      digitalWrite(signal[i][1],HIGH);
+      delay(1000);
+      digitalWrite(signal[i][1],LOW);
+      digitalWrite(signal[i][0],HIGH);
+    }
+  }
+  if(time_slot == 3)
+  {
+    for(int i=0; i<4; i++)
+    {
+      digitalWrite(signal[i][0],HIGH);
+    }
+    for(int i=1;i>=0; i--)
+    {
+      digitalWrite(signal[i][0],LOW);
+      digitalWrite(signal[i+2][0],LOW);
+      digitalWrite(signal[i][2],HIGH);
+      digitalWrite(signal[i+2][2],HIGH);
+      delay(3000);
+      digitalWrite(signal[i][2],LOW);
+      digitalWrite(signal[i+2][2],LOW);
+      digitalWrite(signal[i][1],HIGH);
+      digitalWrite(signal[i+2][1],HIGH);
+      delay(1000);
+      digitalWrite(signal[i][1],LOW);
+      digitalWrite(signal[i+2][1],LOW);
+      digitalWrite(signal[i][0],HIGH);
+      digitalWrite(signal[i+2][0],HIGH);
+    }
+  }
+}
