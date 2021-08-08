@@ -1,4 +1,4 @@
-int time_slot = 3;//depict time of the day
+int time_slot = 1;//depict time of the day
 //2D array for 4 signals, each having 3 LED lights
 int signal[4][3] = {7, 6, 5,//signal 1 red, yellow, green LED respectively
                     4, 3, 2,//signal 2 red, yellow, green LED respectively
