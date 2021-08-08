@@ -18,7 +18,7 @@ void setup() {
   Serial.println("Enter the time slot of the day");
   while(Serial.available()==0) {};
   time_slot = Serial.parseInt();  //user defined time slot
-  while(time_slot < 1 || time_slot > 4)
+  while(time_slot < 1 || time_slot > 4) //if the time slot is not correct
   {
     Serial.println("Enter the correct time slot of the day");
     while(Serial.available()==0) {};
