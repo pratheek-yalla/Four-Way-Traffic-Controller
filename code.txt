@@ -18,6 +18,12 @@ void setup() {
   Serial.println("Enter the time slot of the day");
   while(Serial.available()==0) {};
   time_slot = Serial.parseInt();  //user defined time slot
+  while(time_slot < 1 || time_slot > 4)
+  {
+    Serial.println("Enter the correct time slot of the day");
+    while(Serial.available()==0) {};
+    time_slot = Serial.parseInt();  //user defined time slot
+  }
 }
 void loop() {
   //for time_slot 1
